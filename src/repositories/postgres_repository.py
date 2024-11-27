@@ -7,7 +7,7 @@ class PostgresRepository:
         self.connection = psycopg2.connect(
             user="postgres",
             password="luck2012",
-            host="localhost",
+            host="200.134.81.30",
             port="5432",
             database="cade_busao"
         )
