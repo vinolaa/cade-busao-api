@@ -11,7 +11,8 @@ class AuthService:
             login,
             email,
             nome,
-            tipo_usuario
+            tipo_usuario,
+            ie_primeiro_login
         FROM usuarios
         WHERE login = '{login}'
         """.format(login=login)
@@ -52,10 +53,10 @@ class AuthService:
             }
 
         query = f"""
-        INSERT INTO usuarios (login, senha, email, tipo_usuario, cadastro_basico, dt_cadastro)
-        VALUES ('{login}', crypt('{senha}', gen_salt('bf')), '{email}', 'U', true, 
+        INSERT INTO usuarios (login, senha, email, tipo_usuario, dt_cadastro)
+        VALUES ('{login}', crypt('{senha}', gen_salt('bf')), '{email}', 'U', 
         NOW() at time zone 'America/Sao_Paulo');
-        """.format(login=login, senha=senha, email=email)
+        """
 
         try:
             self.postgres.execute_query(query, commit=True)
